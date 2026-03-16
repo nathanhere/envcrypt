@@ -1,6 +1,6 @@
 # envcrypt
 
-Currently, no coding agent related editor seems to have an iron-clad way to prevent .env variables from being accidentally read by an AI agent, whether directly or indirectly via an invoked tool. This lightweight bash tool prevents casual .env exposure from AI agents, as well as accidental `cat`, or screen-sharing exposure. It works by encrypting .env values, then as needed, decrypting them for a selected time duration (1 min, 2 min, 5 min), at which point they are automatically encrypted again (including on early exit via `CTRL+c`)
+Currently, no coding agent related editor seems to have an iron-clad way to prevent .env variables from being accidentally read by an AI agent, whether directly or indirectly via an invoked tool. This lightweight bash tool prevents casual .env exposure from AI agents, as well as accidental `cat`, or screen-sharing exposure. It works by encrypting .env values, then as needed, decrypting them for a selected time duration (1 min, 2 min, 5 min), at which point they are automatically encrypted again (including early exit via `CTRL+c`)
 
 Keys are always stored as plaintext. Only values are encrypted, wrapped in an `ENC(...)` sentinel so they remain easy to identify.
 
@@ -10,7 +10,7 @@ Encryption uses AES-256-CBC with PBKDF2 key derivation via OpenSSL.
 
 ## Example
 
-**First run** — no `.envcrypt` file exists yet, so you're walked through setup:
+**First run** — setup walkthrough:
 
 ```
 $ ./envcrypt.sh
@@ -23,6 +23,8 @@ No projects configured. Let's set one up.
 ✓ Project "project-one" saved as default.
   Stored path: /your/project-one/.env
 ```
+
+ A resulting `.envcrypt` file is created that stores configuration.
 
 **Subsequent runs** — project menu appears:
 
