@@ -1,8 +1,12 @@
 # envcrypt
 
-A lightweight Bash tool for encrypting and decrypting `.env` file values using AES-256-CBC with PBKDF2 key derivation via OpenSSL.
+Currently, no coding agent related editor seems to have an iron-clad way to prevent .env variables from being accidentally read by an AI agent, whether directly or indirectly via an invoked tool. This lightweight bash tool prevents casual .env exposure from AI agents, as well as accidental `cat`, or screen-sharing exposure. It works by encrypting .env values, then as needed, decrypting them for a selected time duration (1 min, 2 min, 5 min), at which point they are automatically encrypted again (including on early exit via `CTRL+c`)
 
-Keys are always stored as plaintext. Only values are encrypted, wrapped in an `ENC(...)` sentinel so they remain easy to identify. The goal is to prevent casual exposure — AI agents reading your files, accidental `cat`, screen-sharing — not to replace a proper secrets manager.
+Keys are always stored as plaintext. Only values are encrypted, wrapped in an `ENC(...)` sentinel so they remain easy to identify.
+
+This does not replace a proper secrets manager.
+
+Encryption uses AES-256-CBC with PBKDF2 key derivation via OpenSSL. 
 
 ## Example
 
